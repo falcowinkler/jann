@@ -6,18 +6,18 @@
 
 (deftest make-network-test
   (testing "if network initialization works"
-    (is (= {:weights [(array [[0 0]
-                              [0 0]
-                              [0 0]])
-                      (array [[0 0 0]])]
-            :biases  [(array [0 0 0]) (array [0])]}
+    (is (= {:weights [(array [[0.0 0.0]
+                              [0.0 0.0]
+                              [0.0 0.0]])
+                      (array [[0.0 0.0 0.0]])]
+            :biases  [(array [0.0 0.0 0.0]) (array [0.0])]}
            (n/make-network [2 3 1] identity)))))
 
 (deftest inference-test
   (testing "if inference works"
     (is (= (array [0.5])
            (n/infer [0 0] (n/make-network [2 3 1] identity))))
-    (is (= (array [1])
+    (is (= (array [1.0])
            (n/infer [0 0]
                     {:weights [(array [[0 0]
                                        [0 0]

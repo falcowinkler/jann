@@ -13,7 +13,7 @@
 
 (deftest test-calc-logits
   (testing "if calculating logits works"
-    (is (= [(array [15 17])]
+    (is (= [(array [15.0 17.0])]
            (backprop/calc-logits
              [(array [[1 4] [5 2]])]
              [[1 1]]
@@ -30,7 +30,7 @@
 
 (deftest test-output-error
   (testing "if saturated neuron has zero gradient"
-    (is (= (array [0 0])
+    (is (= (array [0.0 0.0])
            (backprop/output-error
              [(array [1 1])]
              [(array [5000 5000])]
