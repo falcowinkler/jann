@@ -1,5 +1,7 @@
 # just another neural network
 
+[![CircleCI](https://circleci.com/gh/falcowinkler/jann.svg?style=svg)](https://circleci.com/gh/falcowinkler/jann)
+
 A tiny neural network written in clojure that learns to recognize mnist digits,
 without any libraries except `clojure.core.matrix`.
 Purely for fun and learning.
