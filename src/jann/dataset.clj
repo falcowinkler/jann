@@ -16,7 +16,6 @@
     (catch RuntimeException e
       (printf "Error parsing edn file '%s': %s\n" source (.getMessage e)))))
 
-
 (defn load-dataset
   ([images-file labels-file]
    (let [images (load-edn images-file)

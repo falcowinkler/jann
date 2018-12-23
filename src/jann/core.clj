@@ -11,7 +11,7 @@
 (set-current-implementation :vectorz)
 
 (defn -main
-  [& args]
+  [& _]
   (let [ds (ds/load-dataset)
         network (n/make-network [784 100 10] init/random-init)]
     (sgd/train ds 10 network 30 3)))

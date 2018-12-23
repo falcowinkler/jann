@@ -7,6 +7,10 @@
 
 (def test-network (net/make-network [2 3 2] init/random-init))
 
+;this can be considered a full "smoke test" for the network
+;the dataset is just the domain of the or function (two one-hot encoded classes "true" and "false")
+;and the network should be able to learn that in a reasonable amount of training episodes
+
 (def or-dataset {:test   {:images [[1.0
                                     0.0]
                                    [1.0

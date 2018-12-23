@@ -35,4 +35,3 @@
     (str  (get (frequencies (map (fn [x] (= (first x) (second x))) zipped)) true)
           "/"
           (count test-data) " correct classifications")))
-

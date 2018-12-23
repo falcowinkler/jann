@@ -11,8 +11,8 @@
          nabla_b (for [s (:biases network)] (zero-array (shape s)))
          nabla_w (for [s (:weights network)] (zero-array (shape s)))]
     (if (empty? imgs)
-      {:nabla_w nabla_w :nabla_b nabla_b}
-      (let [{n_b :nabla_b n_w :nabla_w}
+      {:weights_gradient nabla_w :bias_gradient nabla_b}
+      (let [{n_b :bias_gradient n_w :weights_gradient}
             (backprop/get-gradient
               (:weights network)
               (:biases network)
@@ -24,14 +24,14 @@
                (for [[x y] (map vector nabla_w n_w)] (add x y)))))))
 
 (defn add-bias-to-nabla [batch-size learning-rate bias-nabla-pair]
-  (let [averaged-nabla (mul (/ learning-rate batch-size) (second bias-nabla-pair))]
-    (sub (first bias-nabla-pair) averaged-nabla)))
+  (let [averaged-gradient (mul (/ learning-rate batch-size) (second bias-nabla-pair))]
+    (sub (first bias-nabla-pair) averaged-gradient)))
 
 (defn apply-grad [grad network batch-size learning-rate]
   {:biases  (map (partial add-bias-to-nabla batch-size learning-rate)
-                 (map vector (:biases network) (:nabla_b grad)))
+                 (map vector (:biases network) (:bias_gradient grad)))
    :weights (map (partial add-bias-to-nabla batch-size learning-rate)
-                 (map vector (:weights network) (:nabla_w grad)))})
+                 (map vector (:weights network) (:weights_gradient grad)))})
 
 (defn train-epoch [images labels batch-size network learning-rate]
   (loop [index 0 net network]

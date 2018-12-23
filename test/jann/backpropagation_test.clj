@@ -64,8 +64,8 @@
              [[1.5
                1.5]
               [1.5
-               1.5]] (backprop/nabla-w [[3 3] [2 2] [1 1]]
-                                       [[0 0] [-0.5 -0.5] [1.5 1.5] [3 3]])]]))))
+               1.5]] (backprop/weights-gradient [[3 3] [2 2] [1 1]]
+                                                [[0 0] [-0.5 -0.5] [1.5 1.5] [3 3]])]]))))
 
 ;;For the following tests we assume a network that learns XOR
 ;; 2 inputs, 3 hidden and 1 output)
@@ -76,16 +76,16 @@
                    (:biases test-network)
                    (array [1 0])
                    [0])]
-      (is (= [3 2] (shape (first (:nabla_w result)))))
-      (is (= [1 3] (shape (second (:nabla_w result)))))
+      (is (= [3 2] (shape (first (:weights_gradient result)))))
+      (is (= [1 3] (shape (second (:weights_gradient result)))))
       (is (= (array [[0.021346298065922878
                       0.021346298065922878
-                      0.021346298065922878]]) (array (second (:nabla_w result)))))
+                      0.021346298065922878]]) (array (second (:weights_gradient result)))))
       (is (= (array [[0.005020473763405151
                       0.0]
                      [0.005020473763405151
                       0.0]
                      [0.005020473763405151
-                      0.0]]) (array (first (:nabla_w result))))))))
+                      0.0]]) (array (first (:weights_gradient result))))))))
 
 

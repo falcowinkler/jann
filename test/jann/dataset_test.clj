@@ -4,7 +4,6 @@
     [jann.dataset :as dataset])
   (:use [clojure.core.matrix]))
 
-
 (deftest load-dataset-test
   (testing "if edn dataset is loaded correctly"
     (is (= {:test  {:images [[0.0
